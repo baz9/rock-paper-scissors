@@ -5,6 +5,7 @@ const reset = document.getElementById("reset");
 const playerScore = document.getElementById("player-counter");
 const computerScore = document.getElementById("comp-counter");
 const feedback = document.querySelector(".feedback");
+
 let cScore = 0;
 let pScore = 0;
 
@@ -63,15 +64,26 @@ function playRound(player) {
 function win() {
     pScore++;
     playerScore.innerHTML = pScore;
-    feedback.innerHTML = "You LOST that round!";
+    feedback.style.color = "green";
+    if (cScore === 5) {
+        feedback.innerHTML = "You WON the game";
+    } else {
+        feedback.innerHTML = "You won that round!";
+    }
 }
 
 function loss() {
     cScore++;
     computerScore.innerHTML = cScore;
-    feedback.innerHTML = "You WON that round!";
+    feedback.style.color = "red";
+    if (cScore === 5) {
+        feedback.innerHTML = "You LOST the game";
+    } else {
+        feedback.innerHTML = "You lost that round!";
+    }
 }
 
 function draw() {
+    feedback.style.color = "white";
     feedback.innerHTML = "Draw - No points awarded";
 }
