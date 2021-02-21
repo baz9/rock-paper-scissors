@@ -32,30 +32,6 @@ h2 {
     text-align: center;
 }
 
-.winloss {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px 10px 20px;
-    text-align: center;
-    transition: 1s;
-}
-
-.winner {
-    display: flex;
-    justify-content: center;
-    font-size: 60px;
-    font-family: 'Fredoka One', cursive;
-    color: green;
-    transform: rotate(-20deg);
-}
-
-.loser {
-    font-size: 60px;
-    font-family: 'Fredoka One', cursive;
-    color: red;
-    transform: rotate(20deg);
-}
-
 .title {
     color: white;
     font-family: 'Fredoka One', cursive;
@@ -139,10 +115,6 @@ button {
     cursor: pointer;
 }
 
-#counter {
-    text-align: center;
-}
-
 #computer{
     position: absolute;
     top: 40%;
@@ -169,7 +141,6 @@ button:active {
 img {
     width: 100px;
     height: auto;
-    margin-left: 5vh;
-    margin-right: 5vh;
+    margin-left: 45px;
+    margin-right: 45px;
 }
-
