@@ -1,52 +1,58 @@
-    <script>
-        
-        function computerSelection() {
-            let rockPaperScissors = ["Rock", "Paper", "Scissors"];
-            let computerAnswer = rockPaperScissors[Math.floor(Math.random()*rockPaperScissors.length)];
-            computerAnswer = computerAnswer.toUpperCase();
-            return computerAnswer;
-        }
-        
-        function playRound(computer, player) {
-            switch (computer + player) {
-                case "ROCKROCK":
-                case "PAPERPAPER":
-                case "SCISSORSSCISSORS":
-                    return "Draw";
-            
-                case "ROCKSCISSORS":
-                case "PAPERROCK":
-                case "SCISSORSPAPER":
-                    return "Lost";
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
+const start = document.getElementById("start-game");
+const playerScore = document.getElementById("player-counter");
+const computerScore = document.getElementById("comp-counter");
+let cScore = 0;
+let pScore = 0;
 
-                case "SCISSORSROCK":
-                case "ROCKPAPER":
-                case "PAPERSCISSORS":
-                    return "Won";
-        }
+function main() {
+    rock.addEventListener("click", function() {
+        playRound("ROCK");
+    })
+
+    paper.addEventListener("click", function() {
+        playRound("PAPER");
+    })
+
+    scissors.addEventListener("click", function() {
+        playRound("SCISSORS");
+    })
+}
+
+start.addEventListener("click", function() {
+    main();
+})
+
+function getComputerSelection() {
+    let rockPaperScissors = ["ROCK", "PAPER", "SCISSORS"];
+    let computerAnswer = rockPaperScissors[Math.floor(Math.random() * 3)];
+        return computerAnswer;
     }
 
-    function startGame() {
-            computerScore = 0;
-            playerScore = 0;
-            while (computerScore < 5 && playerScore < 5) {
-                let computerPick = computerSelection();
-                let playerPick = prompt("Pick Rock, Paper or Scissors");
-                playerPick = playerPick.toUpperCase();
-                if (playRound(computerPick, playerPick) === "Won") {
-                    playerScore++;
-                    console.log(`Player now has ${playerScore} points`)
-                } else if (playRound(computerPick, playerPick) === "Lost") {
-                    computerScore++;
-                    console.log(`Computer now has ${computerScore} points`)
-                } else {
-                    console.log("No winner that round!")
-                }
-            }
-            return `The final score is ${computerScore} to the computer and ${playerScore} to the player`
-
+function playRound(player) {
+    if (pScore < 5 && cScore < 5) {
+        let computer = getComputerSelection();
+        switch (computer + player) {
+            case "ROCKROCK":
+            case "PAPERPAPER":
+            case "SCISSORSSCISSORS":
+                break;
+                    
+            case "ROCKSCISSORS":
+            case "PAPERROCK":
+            case "SCISSORSPAPER":
+                cScore++;
+                computerScore.innerHTML = cScore;
+                break;
+        
+            case "SCISSORSROCK":
+            case "ROCKPAPER":
+            case "PAPERSCISSORS":
+                pScore++;
+                playerScore.innerHTML = pScore;
+                break;
         }
-
-    console.log(startGame());
-
-    </script>
+    }
+}
