@@ -22,7 +22,11 @@ function main() {
 }
 
 start.addEventListener("click", function() {
-    main();
+    cScore = 0;
+    pScore = 0;
+    computerScore.innerHTML = cScore;
+    playerScore.innerHTML = pScore;
+    console.log(cScore + " " + pScore);
 })
 
 function getComputerSelection() {
@@ -32,7 +36,7 @@ function getComputerSelection() {
     }
 
 function playRound(player) {
-    if (pScore < 5 && cScore < 5) {
+    if (cScore < 5 && pScore < 5) {
         let computer = getComputerSelection();
         switch (computer + player) {
             case "ROCKROCK":
@@ -44,15 +48,17 @@ function playRound(player) {
             case "PAPERROCK":
             case "SCISSORSPAPER":
                 cScore++;
-                computerScore.innerHTML = cScore;
+                playerScore.innerHTML = cScore;
                 break;
         
             case "SCISSORSROCK":
             case "ROCKPAPER":
             case "PAPERSCISSORS":
                 pScore++;
-                playerScore.innerHTML = pScore;
+                computerScore.innerHTML = pScore;
                 break;
         }
     }
 }
+
+main();
