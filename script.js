@@ -1,32 +1,32 @@
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
-const start = document.getElementById("start-game");
+const reset = document.getElementById("reset");
 const playerScore = document.getElementById("player-counter");
 const computerScore = document.getElementById("comp-counter");
+const feedback = document.querySelector(".feedback");
 let cScore = 0;
 let pScore = 0;
 
-function main() {
-    rock.addEventListener("click", function() {
-        playRound("ROCK");
-    })
+rock.addEventListener("click", function() {
+    playRound("ROCK");
+})
 
-    paper.addEventListener("click", function() {
-        playRound("PAPER");
-    })
+paper.addEventListener("click", function() {
+    playRound("PAPER");
+})
 
-    scissors.addEventListener("click", function() {
-        playRound("SCISSORS");
-    })
-}
+scissors.addEventListener("click", function() {
+    playRound("SCISSORS");
+})
 
-start.addEventListener("click", function() {
+reset.addEventListener("click", function() {
     cScore = 0;
     pScore = 0;
     computerScore.innerHTML = cScore;
     playerScore.innerHTML = pScore;
     console.log(cScore + " " + pScore);
+    feedback.innerHTML = "Game reset";
 })
 
 function getComputerSelection() {
@@ -42,23 +42,36 @@ function playRound(player) {
             case "ROCKROCK":
             case "PAPERPAPER":
             case "SCISSORSSCISSORS":
+                draw();
                 break;
                     
             case "ROCKSCISSORS":
             case "PAPERROCK":
             case "SCISSORSPAPER":
-                cScore++;
-                playerScore.innerHTML = cScore;
+                loss();
                 break;
         
             case "SCISSORSROCK":
             case "ROCKPAPER":
             case "PAPERSCISSORS":
-                pScore++;
-                computerScore.innerHTML = pScore;
+                win();
                 break;
         }
     }
 }
 
-main();
+function win() {
+    pScore++;
+    playerScore.innerHTML = pScore;
+    feedback.innerHTML = "You LOST that round!";
+}
+
+function loss() {
+    cScore++;
+    computerScore.innerHTML = cScore;
+    feedback.innerHTML = "You WON that round!";
+}
+
+function draw() {
+    feedback.innerHTML = "Draw - No points awarded";
+}
