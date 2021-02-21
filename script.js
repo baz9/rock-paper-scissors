@@ -9,24 +9,17 @@ const feedback = document.querySelector(".feedback");
 let cScore = 0;
 let pScore = 0;
 
-rock.addEventListener("click", function() {
-    playRound("ROCK");
-})
+rock.addEventListener("click", () => playRound("ROCK"));
+paper.addEventListener("click", () => playRound("PAPER"));
+scissors.addEventListener("click", () => playRound("SCISSORS"));
 
-paper.addEventListener("click", function() {
-    playRound("PAPER");
-})
-
-scissors.addEventListener("click", function() {
-    playRound("SCISSORS");
-})
-
-reset.addEventListener("click", function() {
+reset.addEventListener("click", () => {
     cScore = 0;
     pScore = 0;
     computerScore.innerHTML = cScore;
     playerScore.innerHTML = pScore;
     console.log(cScore + " " + pScore);
+    feedback.style.color = "white";
     feedback.innerHTML = "Game reset";
 })
 
